@@ -1,15 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+<!--  <CochesComponent/>-->
+<!--  <CustomersComponent/>-->
+  <EmpleadosComponent/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+// import CochesComponent from "@/components/cochescomponent/CochesComponent.vue";
+
+//import CustomersComponent from "@/components/customerscomponent/CustomersComponent.vue";
+import EmpleadosComponent from "@/components/empleadoscomponent/EmpleadosComponent.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    EmpleadosComponent,
+   // CustomersComponent
+    // CochesComponent,
+
   }
 }
 </script>
@@ -21,6 +30,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 </style>
