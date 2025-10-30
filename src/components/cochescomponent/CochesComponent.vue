@@ -1,26 +1,30 @@
 <template>
-  <div class="bg-black">
+  <div class="container py-3">
     <h1 class="text-primary">Api Coches</h1>
 
-    <div class="d-flex" v-for="car in coches" :key="car">
-      <div>
-      <h3 style="color:dodgerblue">
-        {{car.marca}} {{car.modelo}}
-      </h3>
-      <p>Conductor: {{car.conductor}}</p>
-      <img :src="car.imagen" style="width: 150px;height: 150px;"/>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-4 mb-4" v-for="car in coches" :key="car">
+        <div class="card h-100 bg-dark text-white">
+          <img :src="car.imagen" class="card-img-top img-fluid" alt="imagen coche" style="height:150px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title" style="color:dodgerblue">{{ car.marca }} {{ car.modelo }}</h5>
+            <p class="card-text mb-0">Conductor: {{ car.conductor }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import Global from "./../../Global";
+
+import ServiceCoches from "../../services/ServiceCoches";
+
 //SI NECESITAMOS VARIABLES PARA TODO EL COMPONENT Y SUS METODOS
 //SE DECLARAN AQUI(mounted,methods,create)
 
-let urlApi=Global.urlApiCoches
+const service=new ServiceCoches();
+
 export default {
   name: "CochesComponent",
   data(){
@@ -29,11 +33,9 @@ export default {
     }
   },
   mounted(){
-    let request="webresources/coches"
-    //LAS VARIABLES DECLARADAS FUERA DEL EXPORT NO UTILIZAN this
-    axios.get(urlApi + request).then(response=>{
-      console.log(response.data)
-      this.coches=response.data;
+    //UNA PROMESA NO ES UN METODO, ES UN OBJETO
+    service.getCoches().then(response=> {
+      this.coches = response;
     })
   }
 }

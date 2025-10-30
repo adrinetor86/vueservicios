@@ -32,11 +32,11 @@
 
 <script>
 
-import Global from "./../../Global";
-import axios from "axios";
 
-let urlApi=Global.urlApiEmpleados
+import ServiceEmpleado from "@/services/ServiceEmpleados";
 
+
+const service = new ServiceEmpleado();
 export default {
   name: "EmpleadosComponent",
   data(){
@@ -49,21 +49,18 @@ export default {
   methods:{
     mostrarDatos(){
 
-      let request="api/Empleados/"+this.idEmpleado
-
-      axios.get(urlApi+request).then(response=>{
-        this.empleado=response.data;
+      service.findEmpleadosById(this.idEmpleado).then(response=>{
+        this.empleado=response
       })
+
     }
   },
   mounted(){
-    let request="api/Empleados"
-    axios.get(urlApi+request).then((response)=>{
-      console.log(response.data);
 
-      this.empleados=response.data;
-      console.log(this.empleados);
+    service.getEmpleados().then(response=>{
+      this.empleados=response;
     })
+
   },
 }
 </script>
