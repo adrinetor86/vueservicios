@@ -53,6 +53,7 @@ export default {
   watch: {
     '$route.params.oficio' (newVal, oldVal) {
 
+
       if (newVal !== oldVal) {
         console.log("OFICIO NUEVO "+newVal);
         this.cargarEmpleados();
